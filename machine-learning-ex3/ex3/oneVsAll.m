@@ -49,7 +49,7 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
-% Solution 1
+
 for i =1:num_labels
     initial_theta = zeros(n+1, 1);
     options = optimset('Gradobj', 'on', 'MaxIter', 50);
