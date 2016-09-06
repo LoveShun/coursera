@@ -1,0 +1,130 @@
+% !TEX program = xelatex
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt]{article}   %这个我就不多说了，头文件
+\usepackage{url}   %这个我也不多说了
+\usepackage{amsmath}
+\usepackage{fontspec, xltxtra, xunicode}   %最新的mactex都有
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont{Songti SC}   %设置中文字体
+\XeTeXlinebreaklocale “zh”
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt %文章内中文自动换行，可以自行调节
+\begin{document}
+
+当dataset X只有一项时：
+\begin{equation}
+X = 
+	\left(
+		\begin{matrix}
+			x_0=1 \\
+			x_1 \\
+			x_2 \\
+			\vdots \\
+			x_n
+		\end{matrix}
+	\right)
+\end{equation}
+
+\begin{equation}
+\theta = 
+	\left(
+		\begin{matrix}
+			\theta_0 \\
+			\theta_1 \\
+			\vdots \\
+			\theta_n
+		\end{matrix}
+	\right)
+\end{equation}
+
+\begin{equation}
+y = y
+\end{equation}
+
+当dataset X有m项时：
+\begin{equation}
+\begin{aligned}
+X & = 
+	\left(
+		\begin{matrix}
+			x^{(0)} \\
+			x^{(1)} \\
+			x^{(2)} \\
+			x^{(3)} \\
+			\vdots \\
+			x^{(m)} \\
+		\end{matrix}
+	\right) \\
+& =
+	\left(
+		\begin{matrix}
+		x_0^{(1)} & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+		x_0^{(2)} & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+		x_0^{(3)} & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+		\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+		x_0^{(m)} & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+		\end{matrix}
+	\right) \\
+& =
+		\left(
+		\begin{matrix}
+		1 & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+		1 & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+		1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+		\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+		1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+		\end{matrix}
+	\right)
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\theta & = 
+	\left(
+		\begin{matrix}
+			\theta^{(0)} \\
+			\theta^{(1)} \\
+			\theta^{(2)} \\
+			\theta^{(3)} \\
+			\vdots \\
+			\theta^{(m)} \\
+		\end{matrix}
+	\right) \\
+& =
+	\left(
+		\begin{matrix}
+		\theta_0^{(1)} & \theta_1^{(1)} & \theta_2^{(1)} & \theta_3^{(1)} & \dots & \theta_n^{(1)} \\
+		\theta_0^{(2)} & \theta_1^{(2)} & \theta_2^{(2)} & \theta_3^{(2)} & \dots & \theta_n^{(2)} \\
+		\theta_0^{(3)} & \theta_1^{(3)} & \theta_2^{(3)} & \theta_3^{(3)} & \dots & \theta_n^{(3)} \\
+		\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+		\theta_0^{(m)} & \theta_1^{(m)} & \theta_2^{(m)} & \theta_3^{(m)} & \dots & \theta_n^{(m)} \\
+		\end{matrix}
+	\right)
+\end{aligned}
+\end{equation}
+
+
+
+ 
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
