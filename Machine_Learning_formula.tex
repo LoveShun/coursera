@@ -3,7 +3,6 @@
 % !TEX encoding = UTF-8 Unicode
 
 \documentclass[12pt]{article}   %这个我就不多说了，头文件
-\usepackage{url}   %这个我也不多说了
 \usepackage{amsmath}
 \usepackage{fontspec, xltxtra, xunicode}   %最新的mactex都有
 \defaultfontfeatures{Mapping=tex-text}
@@ -17,7 +16,17 @@
 X = 
 	\left(
 		\begin{matrix}
-			x_0=1 \\
+			x_0 \\
+			x_1 \\
+			x_2 \\
+			\vdots \\
+			x_n
+		\end{matrix}
+	\right) 
+= 
+  	\left(
+		\begin{matrix}
+			1 \\
 			x_1 \\
 			x_2 \\
 			\vdots \\
@@ -40,6 +49,27 @@ X =
 
 \begin{equation}
 y = y
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+	h_{\theta}(x) & = \theta^{T}X = X^T\theta \\
+	& = 
+		\left(
+			\begin{matrix}
+				1 & x_1 & x_2 & \dots & x_n
+			\end{matrix}
+		\right)
+		\left(
+			\begin{matrix}
+			\theta_0 \\
+			\theta_1 \\
+			\dots \\
+			\theta_n
+			\end{matrix}
+		\right) \\
+	& = \theta_0 + \theta_1x_1 + \theta_2x_2 + \dots + \theta_nx_n
+\end{aligned}
 \end{equation}
 
 当dataset X有m项时：
@@ -95,6 +125,7 @@ X & =
 & =
 	\left(
 		\begin{matrix}
+		\theta_0^{(0)} & \theta_1^{(0)} & \theta_2^{(0)} & \theta_3^{(0)} & \dots & \theta_n^{(0)} \\
 		\theta_0^{(1)} & \theta_1^{(1)} & \theta_2^{(1)} & \theta_3^{(1)} & \dots & \theta_n^{(1)} \\
 		\theta_0^{(2)} & \theta_1^{(2)} & \theta_2^{(2)} & \theta_3^{(2)} & \dots & \theta_n^{(2)} \\
 		\theta_0^{(3)} & \theta_1^{(3)} & \theta_2^{(3)} & \theta_3^{(3)} & \dots & \theta_n^{(3)} \\
@@ -104,10 +135,6 @@ X & =
 	\right)
 \end{aligned}
 \end{equation}
-
-
-
- 
 \end{document}
 
 
