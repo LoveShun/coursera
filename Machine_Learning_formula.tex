@@ -5,13 +5,21 @@
 \documentclass[12pt]{article}   %这个我就不多说了，头文件
 \usepackage{amsmath}
 \usepackage{fontspec, xltxtra, xunicode}   %最新的mactex都有
-\defaultfontfeatures{Mapping=tex-text}
+% \defaultfontfeatures{Mapping=tex-text}
 \setromanfont{Songti SC}   %设置中文字体
-\XeTeXlinebreaklocale “zh”
-\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt %文章内中文自动换行，可以自行调节
-\begin{document}
+% \XeTeXlinebreaklocale “zh”
+% \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt %文章内中文自动换行，可以自行调节
+\title{Machine Learning Formulas}
+\author{MingShun Wu}
+\date{\today}
 
-当dataset X只有一项时：
+\begin{document}
+\maketitle
+\tableofcontents
+\setcounter{tocdepth}{2}
+
+\section{线性回归}
+\subsection{当dataset X只有1项时}
 \begin{equation}
 X = 
 	\left(
@@ -72,7 +80,7 @@ y = y
 \end{aligned}
 \end{equation}
 
-当dataset X有m项时：
+\subsection{当dataset X有m项时}
 \begin{equation}
 \begin{aligned}
 X & = 
