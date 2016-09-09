@@ -19,13 +19,13 @@ Cost Function
 \begin{enumerate}
 \item 数值形式
 \begin{equation}
-	J(\theta) = \frac{1}{m} 
-	    \sum_{i=1}^m {[ -y^{(i)} \log{[h_\theta{(x^{(i)})} - (1-y^{(i))}]} - (1-y^{(i)})\log(1-h_\theta(x^{(i)}))]}
+	J(\theta) = \frac{1}{m}
+	    \sum_{i=1}^m \left[ -y^{(i)}log{h_\theta(x^{(i)})} - (1-y^{(i)})log{(1-h_\theta(x^{(i)}))} \right]
 \end{equation}
 
 \item 矩阵形式
 \begin{equation}
-		J(\theta) = \frac{1}{m} [-y^T \log{h_\theta(x)} - (1-y^T) \log{(1-h_\theta(x)}]
+		J(\theta) = \frac{1}{m} \left[-y^T \log{h_\theta(x)} - (1-y^T) \log{(1-h_\theta(x)}\right]
 \end{equation}
 \end{enumerate}
 
@@ -36,35 +36,45 @@ Cost Function
 \item 数值形式
 \begin{equation}
 	\frac{\partial J(\theta)}{\partial \theta_j} =
-	    \frac{1}{m} \sum_{i=1}^m [h_\theta(x^{(i)}) - y^{(i)}] x_j^{(i)}
+	    \frac{1}{m} \sum_{i=1}^m \left[h_\theta(x^{(i)}) - y^{(i)}\right] x_j^{(i)}
 \end{equation}
 
 迭代方式：
 \begin{equation}
 	\theta_j :=
-	    \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m [h_\theta(x^{(i)}) - y^{(i)}] x_j^{(i)}
+	    \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m \left[h_\theta(x^{(i)}) - y^{(i)}\right] x_j^{(i)}
 \end{equation}
 
 \item 梯矩阵形式
 \begin{equation}
-	\nabla J(\theta) = \frac{1}{m} X^T [h_\theta(x) - y]
+	\nabla J(\theta) = \frac{1}{m} X^T \left[h_\theta(x) - y\right]
 \end{equation}
 
 迭代方式：
 \begin{equation}
-	\theta := \theta - \alpha \frac{1}{m} X^T [h_\theta(x) - y]
+	\theta := \theta - \alpha \frac{1}{m} X^T \left[h_\theta(x) - y\right]
 \end{equation}
 \end{enumerate}
 
 
 
 \subsection{当只有k个类别时，使用k个分类器}
-
+% 当只有k个类别时，使用k个分类器
 
 \subsection{避免过拟合}
+\begin{enumerate}
+\item 线性回归
+\begin{equation}
+	J(\theta) = \frac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)})-y^{(i)})^2 + \lambda \frac{1}{2m} \sum_{j=1}^n\theta_j^2
+\end{equation}
 
-
-
+\item 逻辑回归
+\begin{equation}
+	J(\theta) = \frac{1}{m}
+	    \sum_{i=1}^m \left[ -y^{(i)}log{h_\theta(x^{(i)})} - (1-y^{(i)})log{(1-h_\theta(x^{(i)}))} \right]
+		+ \lambda \frac{1}{2m} \sum_{j=1}^n\theta_j^2
+\end{equation}
+\end{enumerate}
 
 
 

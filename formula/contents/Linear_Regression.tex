@@ -80,12 +80,12 @@ Cost Function
 \begin{enumerate}
 \item 数值形式：
 \begin{equation}
-	J(\theta) = \frac{1}{2m} [ h_\theta(x^{(i)}) - y^{(i)}]^2
+	J(\theta) = \frac{1}{2m} \left[ h_\theta(x^{(i)}) - y^{(i)}\right]^2
 \end{equation}
 
 \item 矩阵形式：
 \begin{equation}
-	J(\theta) = \frac{1}{2m} [h_\theta(x) - y]^T [ h_\theta(x) - y]
+	J(\theta) = \frac{1}{2m} \left[h_\theta(x) - y\right]^T \left[ h_\theta(x) - y\right]
 \end{equation}
 \end{enumerate}
 
@@ -94,22 +94,22 @@ Cost Function
 \item 数值形式
 \begin{equation}
 	\frac{\partial J(\theta)}{\partial \theta_j} =
-	    \frac{1}{m} [ h_\theta(x^{(i)}) - y^{(i)} ] x_j^{(i)}
+	    \frac{1}{m} \left[ h_\theta(x^{(i)}) - y^{(i)} \right] x_j^{(i)}
 \end{equation}
 
 迭代方式：
 \begin{equation}
-	\theta_j := \theta_j - \alpha \frac{1}{m} [h_\theta(x^{(i)}) - y^{(i)}] x_j^{(i)}
+	\theta_j := \theta_j - \alpha \frac{1}{m} \left[h_\theta(x^{(i)}) - y^{(i)}\right] x_j^{(i)}
 \end{equation}
 
 \item 矩阵形式
 \begin{equation}
-	\nabla J(\theta) = \frac{1}{2m} X^T [h_\theta(x) - y]
+	\nabla J(\theta) = \frac{1}{2m} X^T \left[h_\theta(x) - y\right]
 \end{equation}
 
 迭代方式：
 \begin{equation}
-	\theta := \theta - \alpha \frac{1}{m} X^T [ h_\theta(x) - y]
+	\theta := \theta - \alpha \frac{1}{m} X^T \left[ h_\theta(x) - y\right]
 \end{equation}
 \end{enumerate}
 
