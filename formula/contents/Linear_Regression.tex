@@ -7,14 +7,14 @@
 		\end{matrix}\right)
 	= \left(\begin{matrix}
 			1 \\ x_1 \\ x_2 \\ \vdots \\ x_n
-		\end{matrix}\right)
+		\end{matrix}\right)_{(n+1)*1}
 \end{equation}
 
 
 \begin{equation}
 	\theta = \left(\begin{matrix}
 			\theta_0 \\ \theta_1 \\ \vdots \\ \theta_n
-		\end{matrix}\right)
+		\end{matrix}\right)_{(n+1)*1}
 \end{equation}
 
 
@@ -39,11 +39,10 @@ y = y
 
 
 
-
 \subsection{当训练集X有m项时}
 \begin{equation} \begin{aligned}
 	X & = \left(\begin{matrix}
-			x^{(0)} \\ x^{(1)} \\ x^{(2)} \\ x^{(3)} \\ \vdots \\ x^{(m)} \\
+			x^{(1)} \\ x^{(2)} \\ x^{(3)} \\ \vdots \\ x^{(m)}
 		\end{matrix}\right) \\
 	& = \left( \begin{matrix}
 			x_0^{(1)} & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
@@ -58,23 +57,22 @@ y = y
 			1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
 			\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
 			1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
-		\end{matrix}\right)
+		\end{matrix}\right)_{m*(n+1)}
 \end{aligned} \end{equation}
 
 
 \begin{equation} \begin{aligned}
 	\theta & = \left(\begin{matrix}
-			\theta^{(0)} \\ \theta^{(1)} \\ \theta^{(2)} \\ \theta^{(3)} \\ \vdots \\ \theta^{(m)} \\
-		\end{matrix}\right) \\
-	& = \left(\begin{matrix}
-			\theta_0^{(0)} & \theta_1^{(0)} & \theta_2^{(0)} & \theta_3^{(0)} & \dots & \theta_n^{(0)} \\
-			\theta_0^{(1)} & \theta_1^{(1)} & \theta_2^{(1)} & \theta_3^{(1)} & \dots & \theta_n^{(1)} \\
-			\theta_0^{(2)} & \theta_1^{(2)} & \theta_2^{(2)} & \theta_3^{(2)} & \dots & \theta_n^{(2)} \\
-			\theta_0^{(3)} & \theta_1^{(3)} & \theta_2^{(3)} & \theta_3^{(3)} & \dots & \theta_n^{(3)} \\
-			\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
-			\theta_0^{(m)} & \theta_1^{(m)} & \theta_2^{(m)} & \theta_3^{(m)} & \dots & \theta_n^{(m)} \\
-			\end{matrix}\right)
+			\theta^{(0)} \\ \theta^{(1)} \\ \theta^{(2)} \\ \theta^{(3)} \\ \vdots \\ \theta^{(n)} \\
+		\end{matrix}\right)_{(n+1)*1}
 \end{aligned}\end{equation}
+
+\begin{equation}
+	y = \left(\begin{matrix}
+		y^{(1)} \\ y^{(2)} \\ y^{(3)} \\ \vdots \\ y^{(m)}
+	\end{matrix}\right)_{m*1}
+\end{equation}
+
 
 Cost Function
 \begin{enumerate}
