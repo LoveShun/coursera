@@ -3,7 +3,6 @@
 *.fls
 *.toc
 *.log
-*.pdf
 *.synctex.gz
 .DS_Store
 *.docx
