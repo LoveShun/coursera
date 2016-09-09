@@ -1,13 +1,13 @@
 \section{神经网络图例}
 
-\subsection{图例1}
+\subsection{神经网络示意图}
 \begin{tikzpicture}
 \tikzset{
 	a/.style={circle, draw=black}
 }
 
 % x
-\node[a] (x_0) at(0,10) {+1};
+% \node[a] (x_0) at(0,10) {+1};
 \node[a] (x_1) at(0,8) {$x_1$};
 \node[a] (x_2) at(0,6) {$x_2$};
 \node[a] (x_3) at(0,4) {$x_3$};
@@ -17,7 +17,7 @@
 \node[a] (x_n) at(0,0) {$x_n$};
 
 % a^{(1)}
-\node[a] (a_10) at(2,10) {$a_0^{(1)}$};
+\node[a] (a_10) at(2,10) {$+1$};
 \node[a] (a_11) at(2,8)   {$a_1^{(1)}$};
 \node[a] (a_12) at(2,6) {$a_2^{(1)}$};
 \node[a] (a_13) at(2,4)   {$a_3^{(1)}$};
@@ -27,7 +27,7 @@
 \node[a] (a_1s1) at(2,0) {$a_{s_1}^{(1)}$};
 
 % a^{(2)}
-\node[a] (a_20) at(6,9.5) {+1};
+\node[a] (a_20) at(6,9.5) {$+1$};
 \node[a] (a_21) at(6,8.0) {$a_1^{(2)}$};
 \node[a] (a_22) at(6,6.5) {$a_2^{(2)}$};
 \node[a] (a_23) at(6,5.0) {$a_3^{(2)}$};
@@ -38,7 +38,7 @@
 \node[a] (a_2s2) at(6,0) {$a_{s_2}^{(2)}$};
 
 % a^{(3)}
-\node[a] (a_30) at(10,9.5) {+1};
+\node[a] (a_30) at(10,9.5) {$+1$};
 \node[a] (a_31) at(10,8.0) {$a_1^{(3)}$};
 \node[a] (a_32) at(10,6.5) {$a_2^{(3)}$};
 \node[a] (a_33) at(10,5.0) {$a_3^{(3)}$};
@@ -56,7 +56,7 @@
 \filldraw (12,8) circle (.06);
 
 % a^{(n)}
-\node[a] (a_L0) at(14,9)   {+1};
+
 \node[a] (a_L1) at(14,7.5) {$a_1^{(L)}$};
 \node[a] (a_L2) at(14,6)   {$a_2^{(L)}$};
 \node[a] (a_L3) at(14,4.5) {$a_3^{(L)}$};
@@ -96,36 +96,3 @@
 \path (a_3s3) edge[->] node[auto] {$\Theta_{s14}^{(3)}$} (a_24);
 
 \end{tikzpicture}
-
-\begin{enumerate}
-\item 前向算法公式
-% 单个unit的特殊情况
-\begin{equation}
-	a_1^{(2)} = a_0^{(1)}\theta_{10}^{(1)}
-	+ a_1^{(1)}\theta_{11}^{(1)}
-	+ a_2^{(1)}\theta_{12}^{(1)}
-	+ \dots
-	+ a_{s1}^{(1)}\theta_{1s1}^{(1)}
-\end{equation}
-
-% 单个unit的一般情况
-\begin{equation} \begin{aligned}
-	a_i^{(l+1)}  & = a_0^{(l)}\theta_{j0}^{(l)} + a_1^{(l)}\theta_{j1}^{(l)} + a_2^{(l)}\theta_{j2}^{(l)} + \dots + a_{s1}^{(l)}\theta_{js1}^{(l)}
-	\\ &= \sum_{k=0}^{s_l}{a_k^{(l)}\theta_{jk}^{(l)}}
-\end{aligned}\end{equation}
-
-% 单Layer的普通情况
-\begin{equation} \begin{aligned}
-% i是否从0开始待确定
-	a^{(l+1)} &= \sum_{i=0}^{s_{(l+1)}}{a_i^{(l)}}
-		\\ &= \sum_{i=0}^{s_{(l+1)}}\sum_{k=0}^{s_l}{a_k^{(l)}\theta_{jk}^{(l)}}
-\end{aligned}\end{equation}
-
-
-
-\item 后向算法公式
-
-\end{enumerate}
-
-
-
