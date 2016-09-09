@@ -1,2 +1,119 @@
 \subsection{神经网络}
 	
+
+\subsection{前向算法}
+\subsubsection{各矩阵形状}
+\begin{enumerate}
+
+\item X
+\begin{equation} \begin{aligned}
+	X & = \left(\begin{matrix}
+			x^{(0)} \\ x^{(1)} \\ x^{(2)} \\ x^{(3)} \\ \vdots \\ x^{(m)} \\
+		\end{matrix}\right) \\
+	& = \left( \begin{matrix}
+			x_0^{(1)} & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+			x_0^{(2)} & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+			x_0^{(3)} & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+			\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			x_0^{(m)} & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+			\end{matrix}\right) \\
+	& = \left(\begin{matrix}
+			1 & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+			1 & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+			1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+			\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+		\end{matrix}\right)_{n*m}
+\end{aligned} \end{equation}
+
+\item y
+最初始的y
+\begin{equation} \begin{aligned}
+	X & = \left(\begin{matrix}
+			y^{(0)} \\ y^{(1)} \\ y^{(2)} \\ y^{(3)} \\ \vdots \\ y^{(m)} \\
+		\end{matrix}\right)
+\end{aligned} \end{equation}
+
+为进行矩阵运算，要将其转化为：
+\begin{equation}\begin{aligned}
+	y &= \left(\begin{matrix}
+
+		\end{matrix}\right)
+\end{aligned}\end{equation}
+
+
+\item $\Theta^{(j)}$  \\
+
+$\Theta^{(j)}$ 的形状为: $s_{j+1}*(s_j+1)$ \\
+
+\begin{equation}
+\Theta^{(j)} = 
+	\left(\begin{matrix}
+		\theta_{10}^{(j)} & \theta_{11}^{(j)} & \theta_{12}^{(j)} & \dots & \theta_{1,s_j}^{(j)} \\
+		\theta_{20}^{(j)} & \theta_{21}^{(j)} & \theta_{22}^{(j)} & \dots & \theta_{2,s_j}^{(j)} \\
+		\theta_{30}^{(j)} & \theta_{31}^{(j)} & \theta_{32}^{(j)} & \dots & \theta_{3,s_j}^{(j)} \\
+		\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+		\theta_{s_{j+1,0}}^{(j)} & \theta_{s_{j+1,1}}^{(j)} & \theta_{s_{j+1,2}}^{(j)} & \dots & \theta_{s_{j+1},s_j}^{(j)}
+	\end{matrix}\right)_{(s_{j+1},s_j+1)}
+\end{equation}
+
+
+
+
+\end{enumerate}
+
+
+
+\subsubsection{数值计算方法}
+\begin{enumerate}
+\item 单个unit的特殊情况
+\begin{equation}
+	a_1^{(2)} = g(z_1^{(2)}) = g(a_0^{(1)}\theta_{10}^{(1)}
+	+ a_1^{(1)}\theta_{11}^{(1)}
+	+ a_2^{(1)}\theta_{12}^{(1)}
+	+ \dots
+	+ a_{s1}^{(1)}\theta_{1s1}^{(1)})
+\end{equation}
+
+\item 单个unit的一般情况
+\begin{equation} \begin{aligned}
+	a_i^{(j)} &= g(z_i^{(j)})
+	\\ & = g(a_0^{(j-1)}\theta_{(j-1)0}^{(j-1)} + a_{1}^{(j-1)}\theta_{(j-1)1}^{(j-1)} + a_2^{(j-1)}\theta_{(j-1)2}^{(j-1)} + \dots + a_{s1}^{(j-1)}\theta_{(j-1)s1}^{(j-1)})
+	\\ &= g(\sum_{k=0}^{s_l}{a_k^{(j-1)}\theta_{(j-1)k}^{(j-1)}})
+\end{aligned}\end{equation}
+
+\item 单Layer的普通情况 \\
+{\color{red}{1. i是否从0开始待确定}} \\
+{\color{red}{2. 此公式的正确性待确定，似乎没见过计算整Layer的情况}}
+\begin{equation} \begin{aligned}
+	a^{(j)} &= \sum_{i=0}^{s_{(j)}}{a_i^{(j-1)}}
+		\\ &= \sum_{i=0}^{s_{(j)}}g(\sum_{k=0}^{s_j}{a_k^{(j-1)}\theta_{(j-1)k}^{(j-1)}}))
+\end{aligned}\end{equation}
+\end{enumerate}
+
+\subsubsection{矩阵计算方法}
+\begin{enumerate}
+\item 单个unit的特殊情况
+\begin{equation}
+	a_1^{(2)} = g(\Theta^{(1)} a^{(1)})
+\end{equation}
+
+\item 单个unit的一般情况
+\begin{equation}
+	a_i^{(j)} = g(z_i^{(j)}) = g(\Theta^{(j-1)} a^{(j-1)})
+\end{equation}
+
+% \item 单Layer的普通情况 \\
+% {\color{red}{1. i是否从0开始待确定}} \\
+% {\color{red}{2. 此公式的正确性待确定，似乎没见过计算整Layer的情况}}
+% \begin{equation} \begin{aligned}
+
+% \end{aligned}\end{equation}
+\end{enumerate}
+
+
+
+
+
+
+
