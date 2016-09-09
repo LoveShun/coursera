@@ -8,7 +8,7 @@
 \item X
 \begin{equation} \begin{aligned}
 	X & = \left(\begin{matrix}
-			x^{(0)} \\ x^{(1)} \\ x^{(2)} \\ x^{(3)} \\ \vdots \\ x^{(m)} \\
+			x^{(1)} \\ x^{(2)} \\ x^{(3)} \\ \vdots \\ x^{(m)} \\
 		\end{matrix}\right) \\
 	& = \left( \begin{matrix}
 			x_0^{(1)} & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
@@ -23,23 +23,29 @@
 			1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
 			\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
 			1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
-		\end{matrix}\right)_{n*m}
+		\end{matrix}\right)_{m*(n+1)}
 \end{aligned} \end{equation}
 
 \item y
 最初始的y
 \begin{equation} \begin{aligned}
-	X & = \left(\begin{matrix}
-			y^{(0)} \\ y^{(1)} \\ y^{(2)} \\ y^{(3)} \\ \vdots \\ y^{(m)} \\
-		\end{matrix}\right)
+	y & = \left(\begin{matrix}
+			y^{(1)} \\ y^{(2)} \\ y^{(3)} \\ \vdots \\ y^{(m)} \\
+		\end{matrix}\right)_{m*1}
 \end{aligned} \end{equation}
 
-为进行矩阵运算，要将其转化为：
+为进行矩阵运算，要将其转化为如下形式：\\
+PS: 表示为y的值所在的索引位置值为1，其他位置均为0
 \begin{equation}\begin{aligned}
 	y &= \left(\begin{matrix}
-
-		\end{matrix}\right)
+	        0 & 0 & 0 & \dots & 0 & 1 \\
+	        0 & 1 & 0 & \dots & 0 & 0 \\
+	        0 & 0 & 1 & \dots & 0 & 0 \\
+	        \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	        1 & 0 & 0 & \dots & 0 & 0 \\
+		\end{matrix}\right)_{m*s_L}
 \end{aligned}\end{equation}
+上式$m*s_L$中的$s_L$表示共有$s_L$个分类器，$s_L$表示的是输出层的unit数
 
 
 \item $\Theta^{(j)}$  \\
