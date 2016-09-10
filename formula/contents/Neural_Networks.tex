@@ -3,30 +3,154 @@
 
 \subsection{前向算法}
 \subsubsection{各矩阵形状}
-\begin{enumerate}
 
-\item X
+最初始的数据X为：
 \begin{equation} \begin{aligned}
 	X & = \left(\begin{matrix}
-			x^{(1)} \\ x^{(2)} \\ x^{(3)} \\ \vdots \\ x^{(m)} \\
+			(x^{(1)})^T \\ (x^{(2)})^T \\ (x^{(3)})^T \\ \vdots \\ (x^{(m)})^T \\
 		\end{matrix}\right) \\
 	& = \left( \begin{matrix}
-			x_0^{(1)} & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
-			x_0^{(2)} & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
-			x_0^{(3)} & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
-			\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
-			x_0^{(m)} & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+			x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+			x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+			x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
 			\end{matrix}\right) \\
 	& = \left(\begin{matrix}
+			x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+			x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+			x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+		\end{matrix}\right)_{m,n}
+\end{aligned} \end{equation}
+
+给X测试集的每个数据均添加上$x_0 = 1$后变成$a^{(1)}$：
+\footnote{从测试集X得到$a^{(1)}$不需要经过sigmoid()函数，只要在X中添加$x_0 = 1$即可}
+\begin{equation}\begin{aligned}
+	a^{(1)} &= \left(\begin{matrix} (x_0)_{m*1}, X\end{matrix}\right) = \left(\begin{matrix} 1_{m*1}, X\end{matrix}\right)
+	\\ & = \left(\begin{matrix}
+		1 & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+		1 & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+		1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+		\vdots        & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+		1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+	\end{matrix}\right)_{m,(n+1)}
+\end{aligned}\end{equation}
+
+\begin{equation}
+\Theta^{(1)} = 
+	\left(\begin{matrix}
+		\theta_{10}^{(1)} & \theta_{11}^{(1)} & \theta_{12}^{(1)} & \dots & \theta_{1,s_1}^{(1)} \\
+		\theta_{20}^{(1)} & \theta_{21}^{(1)} & \theta_{22}^{(1)} & \dots & \theta_{2,s_1}^{(1)} \\
+		\theta_{30}^{(1)} & \theta_{31}^{(1)} & \theta_{32}^{(1)} & \dots & \theta_{3,s_1}^{(1)} \\
+		\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+		\theta_{s_{2}0}^{(j)} & \theta_{s_{2}1}^{(j)} & \theta_{s_{2}2}^{(j)} & \dots & \theta_{s_{2},s_{1}}^{(1)}
+	\end{matrix}\right)_{(s_{2},s_1+1)=(s_{2},n+1)}
+\end{equation}
+
+$a^{(1)}$与$\Theta^{(1)}$计算后等到得到$z^{(2)}=\Theta^{(1)}(a^{(1)})^T$
+\footnote{从$a^{(1)}$得到$a^{(2)}$需要经过sigmoid()函数，后续的从$a^{(j)}$得到$a^{(j+1)}$均需要经过sigmoid()函数}
+\begin{equation}\begin{aligned}
+	z^{(2)} &= (((a^{(1)}) \Theta^{(1)})_{s_{2},n+1}^T)_{(n+1, m)}
+		\\ &= 
+		  \left(\begin{matrix}
+				1 & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+				1 & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+				1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+				\vdots        & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+			\end{matrix}\right)
+			\left(\begin{matrix}
+				\theta_{10}^{(1)} & \theta_{11}^{(1)} & \theta_{12}^{(1)} & \dots & \theta_{1,n}^{(1)} \\
+				\theta_{20}^{(1)} & \theta_{21}^{(1)} & \theta_{22}^{(1)} & \dots & \theta_{2,n}^{(1)} \\
+				\theta_{30}^{(1)} & \theta_{31}^{(1)} & \theta_{32}^{(1)} & \dots & \theta_{3,n}^{(1)} \\
+				\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				\theta_{s_{2},0}^{(j)} & \theta_{s_{2},1}^{(j)} & \theta_{s_{2},2}^{(j)} & \dots & \theta_{s_{2},n}^{(1)}
+			\end{matrix}\right)^T
+		\\ &= 
+		  \left(\begin{matrix}
+				1 & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+				1 & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+				1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+				\vdots        & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+			\end{matrix}\right)
+			\left(\begin{matrix}
+				\theta_{10}^{(1)} & \theta_{20}^{(1)} & \theta_{30}^{(1)} & \dots & \theta_{s_{2},0}^{(1)} \\
+				\theta_{11}^{(1)} & \theta_{21}^{(1)} & \theta_{31}^{(1)} & \dots & \theta_{s_{2},1}^{(1)} \\
+				\theta_{12}^{(1)} & \theta_{22}^{(1)} & \theta_{32}^{(1)} & \dots & \theta_{s_{2},2}^{(1)} \\
+				\theta_{13}^{(1)} & \theta_{23}^{(1)} & \theta_{33}^{(1)} & \dots & \theta_{s_{2},3}^{(1)} \\
+				\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				\theta_{1,n}^{(1)} & \theta_{2,n}^{(1)} & \theta_{3,n}^{(1)} & \dots & \theta_{s_{2},n}^{(1)}
+			\end{matrix}\right)
+		% \\ &=
+			% \left(\begin{matrix}
+			% 	\theta_{10}^{(1)} & \theta_{11}^{(1)} & \theta_{12}^{(1)} & \dots & \theta_{1,n}^{(1)} \\
+			% 	\theta_{20}^{(1)} & \theta_{21}^{(1)} & \theta_{22}^{(1)} & \dots & \theta_{2,n}^{(1)} \\
+			% 	\theta_{30}^{(1)} & \theta_{31}^{(1)} & \theta_{32}^{(1)} & \dots & \theta_{3,n}^{(1)} \\
+			% 	\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			% 	\theta_{s_{2}0}^{(j)} & \theta_{s_{2}1}^{(j)} & \theta_{s_{2}2}^{(j)} & \dots & \theta_{s_{2},n}^{(1)}
+			% \end{matrix}\right)  \left(\begin{matrix}
+			% 	1 & 1 & 1 & \dots & 1 \\
+			% 	x_1^{(1)} & x_1^{(2)} & x_1^{(3)} & \dots & x_1^{(m)} \\
+			% 	x_2^{(1)} & x_2^{(2)} & x_2^{(3)} & \dots & x_2^{(m)} \\
+			% 	x_3^{(1)} & x_3^{(2)} & x_3^{(3)} & \dots & x_3^{(m)} \\
+			% 	\vdots & \vdots & \vdots & \ddots & \vdots \\
+			% 	x_n^{(1)} & x_n^{(2)} & x_n^{(3)} & \dots & x_n^{(m)} \\
+			% \end{matrix}\right)
+		\\ &=
+			\left(\begin{matrix}
+				z^{(2)(1)} \\ z^{(2)(2)} \\ z^{(2)(3)} \\ \vdots \\ z^{(2)(m)} 
+			\end{matrix}\right)
+\end{aligned}\end{equation}
+
+
+
+可见，$s_1 = n$，因为$s_k$不算bias unit。\\
+$size(a^{(j)}) = (s_j+1)*1$，\\
+$size(a^{(j+1)}) = (s_{j+1}+1)*1$\\ 
+$a^{(j+1)} = g(X\Theta)$，\\
+故$a^{(j)}$、$\Theta^{(j)}$与$a^{(j+1)}$的矩阵大小关系为：\\
+$a^{(j)}$：
+$\Theta^{(j)}$：
+$a^{(j+1)}$：
+
+
+% 之前写的，暂放后面
+\newpage
+
+\begin{equation}\begin{aligned}
+	temp^{(1)} = \left(\begin{matrix} 1 & X \end{matrix}\right)
+	= \left( \begin{matrix}
 			1 & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
 			1 & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
 			1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
-			\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
-			1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+			\vdots & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)}
 		\end{matrix}\right)_{m*(n+1)}
-\end{aligned} \end{equation}
+\end{aligned}\end{equation}
 
-\item y
+
+\begin{equation}
+	a^{(1)} = g(z^{(1)})
+\end{equation}
+
+\begin{equation}\begin{aligned}
+	z^{(j+1)} = \left(\begin{matrix} 1 & a^{(j)} \end{matrix}\right)
+	= \left( \begin{matrix}
+			1 & a_1^{(1)} & a_2^{(1)} & a_3^{(1)} & \dots & a_{s_j}^{(1)} \\
+			1 & a_1^{(2)} & a_2^{(2)} & a_3^{(2)} & \dots & a_{s_j}^{(2)} \\
+			1 & a_1^{(3)} & a_2^{(3)} & a_3^{(3)} & \dots & a_{s_j}^{(3)} \\
+			\vdots & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			1 & a_1^{(m)} & a_2^{(m)} & a_3^{(m)} & \dots & a_{s_j}^{(m)}
+		\end{matrix}\right)_{m*(s_j+1)}
+\end{aligned}\end{equation}
+
+\begin{equation}
+	a^{(j+1)} = g(z^{(j+1)})
+\end{equation}
+
 最初始的y
 \begin{equation} \begin{aligned}
 	y & = \left(\begin{matrix}
@@ -48,7 +172,7 @@ PS: 表示为y的值所在的索引位置值为1，其他位置均为0
 上式$m*s_L$中的$s_L$表示共有$s_L$个分类器，$s_L$表示的是输出层的unit数
 
 
-\item $\Theta^{(j)}$  \\
+
 
 $\Theta^{(j)}$ 的形状为: $s_{j+1}*(s_j+1)$ \\
 
@@ -60,13 +184,11 @@ $\Theta^{(j)}$ 的形状为: $s_{j+1}*(s_j+1)$ \\
 		\theta_{30}^{(j)} & \theta_{31}^{(j)} & \theta_{32}^{(j)} & \dots & \theta_{3,s_j}^{(j)} \\
 		\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
 		\theta_{s_{j+1,0}}^{(j)} & \theta_{s_{j+1,1}}^{(j)} & \theta_{s_{j+1,2}}^{(j)} & \dots & \theta_{s_{j+1},s_j}^{(j)}
-	\end{matrix}\right)_{(s_{j+1},s_j+1)}
+	\end{matrix}\right)_{(s_{j+1},s_j)}
 \end{equation}
 
 
 
-
-\end{enumerate}
 
 
 
@@ -83,17 +205,9 @@ $\Theta^{(j)}$ 的形状为: $s_{j+1}*(s_j+1)$ \\
 
 \item 单个unit的一般情况
 \begin{equation} \begin{aligned}
-	a_i^{(j)} &= g(z_i^{(j)})
-	\\ & = g(a_0^{(j-1)}\theta_{(j-1)0}^{(j-1)} + a_{1}^{(j-1)}\theta_{(j-1)1}^{(j-1)} + a_2^{(j-1)}\theta_{(j-1)2}^{(j-1)} + \dots + a_{s1}^{(j-1)}\theta_{(j-1)s1}^{(j-1)})
-	\\ &= g(\sum_{k=0}^{s_l}{a_k^{(j-1)}\theta_{(j-1)k}^{(j-1)}})
-\end{aligned}\end{equation}
-
-\item 单Layer的普通情况 \\
-{\color{red}{1. i是否从0开始待确定}} \\
-{\color{red}{2. 此公式的正确性待确定，似乎没见过计算整Layer的情况}}
-\begin{equation} \begin{aligned}
-	a^{(j)} &= \sum_{i=0}^{s_{(j)}}{a_i^{(j-1)}}
-		\\ &= \sum_{i=0}^{s_{(j)}}g(\sum_{k=0}^{s_j}{a_k^{(j-1)}\theta_{(j-1)k}^{(j-1)}}))
+	a_i^{(j+1)} &= g(z_i^{(j+1)})
+	\\ & = g(a_0^{(j)}\theta_{j0}^{(j)} + a_{1}^{(j)}\theta_{j1}^{(j)} + a_2^{(j)}\theta_{j2}^{(j)} + \dots + a_{s1}^{(j)}\theta_{js1}^{(j)})
+	\\ &= g(\sum_{k=0}^{s_l}{a_k^{(j)}\theta_{jk}^{(j)}})
 \end{aligned}\end{equation}
 \end{enumerate}
 
@@ -106,7 +220,7 @@ $\Theta^{(j)}$ 的形状为: $s_{j+1}*(s_j+1)$ \\
 
 \item 单个unit的一般情况
 \begin{equation}
-	a_i^{(j)} = g(z_i^{(j)}) = g(\Theta^{(j-1)} a^{(j-1)})
+	a_i^{(j+1)} = g(z_i^{(j+1)}) = g(\Theta^{(j)} a^{(j)})
 \end{equation}
 
 % \item 单Layer的普通情况 \\
