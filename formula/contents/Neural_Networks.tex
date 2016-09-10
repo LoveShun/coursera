@@ -103,11 +103,17 @@ $a^{(1)}$与$\Theta^{(1)}$计算后等到得到$z^{(2)}=\Theta^{(1)}(a^{(1)})^T$
 			\left(\begin{matrix}
 				z^{(2)(1)} \\ z^{(2)(2)} \\ z^{(2)(3)} \\ \vdots \\ z^{(2)(m)} 
 			\end{matrix}\right)
+		\\ &= 
+			\left(\begin{matrix}
+				z_1^{(2)(1)} & z_2^{(2)(1)} & z_3^{(2)(1)} & \dots & z_{s_2}^{(2)(1)} \\
+				z_1^{(2)(2)} & z_2^{(2)(2)} & z_3^{(2)(2)} & \dots & z_{s_2}^{(2)(2)} \\
+				z_1^{(2)(3)} & z_2^{(2)(3)} & z_3^{(2)(3)} & \dots & z_{s_2}^{(2)(3)} \\
+				\vdots & \vdots & \vdots & \ddots & \vdots \\
+				z_1^{(2)(m)} & z_2^{(2)(m)} & z_3^{(2)(m)} & \dots & z_{s_2}^{(2)(m)} \\
+			\end{matrix}\right)
 \end{aligned}\end{equation}
 
-
-
-可见，$s_1 = n$，因为$s_k$不算bias unit。\\
+$s_1 = n$，因为$s_k$不算bias unit。\\
 $size(a^{(j)}) = (s_j+1)*1$，\\
 $size(a^{(j+1)}) = (s_{j+1}+1)*1$\\ 
 $a^{(j+1)} = g(X\Theta)$，\\
