@@ -68,6 +68,7 @@
 \begin{enumerate}
 	\item 其中，式$g^{'}(z) = g(z)(1-g(z))$，此为sigmoid()函数的特性
 	\item 此时，$z^{L-1}$表示的是一个向量（不是矩阵）
+	\item 此时不需要舍弃$\delta_0^{L}$，因为根本就没有
 \end{enumerate}
 
 % \begin{equation}\begin{aligned}
@@ -81,12 +82,13 @@
 % \end{enumerate}
 
 
-\subsubsection{$\delta^{l}$}
+\subsubsection{$\delta^{l}$（$2<=l<=L-2$）}
 \begin{equation}\begin{aligned}
 	\delta^{l} &= (\Theta^{(l)})^T \delta^{l+1}(2:end) .* g^{'}(z^{l}) \\
 	&= (\Theta^{(l)})^T \delta^{l+1}(2:end) .* g(z^{l}) .* (1-g(z^{l}))
 \end{aligned}\end{equation}
 \begin{enumerate}
+	\item 因$a^{(1)}$直接从X得到，不会有误差，故无$\delta^{(1)}$
 	\item (2:end)表示舍弃第一个数据$\delta_0^{s_{L-1}}$（Matlab索引从1开始）
 	\item 对比于从$a^{l}$到$a^{l+1}$要添加一个$a_0^{l}=1$；从$\delta^{l+1}$到$\delta^{l}$要舍弃一个$\delta_0^{l+1}$
 	\item 同样地，此时$z^{l}$表示的是一个向量（不是矩阵）
