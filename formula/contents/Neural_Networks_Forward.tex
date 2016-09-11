@@ -183,11 +183,11 @@
 
 为进行矩阵运算，要将其转化为如下形式:\footnote{y所对应的值所在的索引位置值为1，其他位置均为0}
 \begin{equation}\begin{aligned}
-	y &= \left(\begin{matrix}
+	Y &= \left(\begin{matrix}
 	        0 & 0 & 0 & \dots & 0 & 1 \\
 	        0 & 1 & 0 & \dots & 0 & 0 \\
 	        0 & 0 & 1 & \dots & 0 & 0 \\
 	        \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
 	        1 & 0 & 0 & \dots & 0 & 0 \\
-		\end{matrix}\right)_{m*s_L}
+		\end{matrix}\right)_{m,s_L}
 \end{aligned}\end{equation}\footnote{上式$m*s_L$中的$s_L$表示共有$s_L$个分类器，$s_L$表示的是输出层的unit数}
