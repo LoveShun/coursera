@@ -23,7 +23,7 @@
 		\end{matrix}\right)_{m,s_L}
 \end{aligned}\end{equation}
 
-\subsubsection{$\delta^{L}$ 与 $\Delta^{L}$}
+\subsubsection{$\delta^{L}$}
 \begin{equation}\begin{aligned}
 	\delta^{L} &= a^{L} - y \\
 		&= \left(\begin{matrix}
@@ -37,30 +37,30 @@
 	\item 此时，$\delta^{L}, a^{L}, y$表示的是均向量（不是矩阵）
 \end{itemize}
 
-\begin{equation}\begin{aligned}
-	\Delta^{L} &= a^{L} - Y \\
-	&= 	
-		\left(\begin{matrix}
-			a_1^{(L)(1)} & a_2^{(L)(1)} & a_3^{(L)(1)} & \dots & a_{s_L}^{(L)(1)} \\
-			a_1^{(L)(2)} & a_2^{(L)(2)} & a_3^{(L)(2)} & \dots & a_{s_L}^{(L)(2)} \\
-			a_1^{(L)(3)} & a_2^{(L)(3)} & a_3^{(L)(3)} & \dots & a_{s_L}^{(L)(3)} \\
-			\vdots & \vdots & \vdots & \ddots & \vdots \\
-			a_1^{(L)(m)} & a_2^{(L)(m)} & a_3^{(L)(m)} & \dots & a_{s_L}^{(L)(m)} \\
-		\end{matrix}\right) - 
-		 \left(\begin{matrix}
-	        0 & 0 & 0 & \dots & 0 & 1 \\
-	        0 & 1 & 0 & \dots & 0 & 0 \\
-	        0 & 0 & 1 & \dots & 0 & 0 \\
-	        \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
-	        1 & 0 & 0 & \dots & 0 & 0 \\
-		\end{matrix}\right)_{m,s_L}
-\end{aligned}\end{equation}
-\begin{itemize}
-	\item 此时，$\Delta^{L}, a^{L}, Y$表示的是均是矩阵
-	\item {\color{red}{从教程看，似乎不用这样算，都用迭代的方式，这大概也是$\delta^{l}$ 与 $\Delta^{l}$表示的意义不一样的来源}}
-\end{itemize}
+% \begin{equation}\begin{aligned}
+% 	\Delta^{L} &= a^{L} - Y \\
+% 	&= 	
+% 		\left(\begin{matrix}
+% 			a_1^{(L)(1)} & a_2^{(L)(1)} & a_3^{(L)(1)} & \dots & a_{s_L}^{(L)(1)} \\
+% 			a_1^{(L)(2)} & a_2^{(L)(2)} & a_3^{(L)(2)} & \dots & a_{s_L}^{(L)(2)} \\
+% 			a_1^{(L)(3)} & a_2^{(L)(3)} & a_3^{(L)(3)} & \dots & a_{s_L}^{(L)(3)} \\
+% 			\vdots & \vdots & \vdots & \ddots & \vdots \\
+% 			a_1^{(L)(m)} & a_2^{(L)(m)} & a_3^{(L)(m)} & \dots & a_{s_L}^{(L)(m)} \\
+% 		\end{matrix}\right) - 
+% 		 \left(\begin{matrix}
+% 	        0 & 0 & 0 & \dots & 0 & 1 \\
+% 	        0 & 1 & 0 & \dots & 0 & 0 \\
+% 	        0 & 0 & 1 & \dots & 0 & 0 \\
+% 	        \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+% 	        1 & 0 & 0 & \dots & 0 & 0 \\
+% 		\end{matrix}\right)_{m,s_L}
+% \end{aligned}\end{equation}
+% \begin{itemize}
+% 	\item 此时，$\Delta^{L}, a^{L}, Y$表示的是均是矩阵
+% 	\item {\color{red}{从教程看，似乎不用这样算，都用迭代的方式，这大概也是$\delta^{l}$ 与 $\Delta^{l}$表示的意义不一样的来源}}
+% \end{itemize}
 
-\subsubsection{$\delta^{L-1}$ 与 $\Delta^{L-1}$}
+\subsubsection{$\delta^{L-1}$}
 \begin{equation}\begin{aligned}
 	\delta^{L-1} &= (\Theta^{(L-1)})^T \delta^{L} .* g^{'}(z^{L-1}) \\
 	&= (\Theta^{(L-1)})^T \delta^{L} .* g(z^{L-1}) .* (1-g(z^{L-1}))
@@ -70,15 +70,15 @@
 	\item 此时，$z^{L-1}$表示的是一个向量（不是矩阵）
 \end{enumerate}
 
-\begin{equation}\begin{aligned}
-	\Delta^{L-1} &= (\Theta^{(L-1)})^T \Delta^{L} .* g^{'}(z^{L-1}) \\
-	&= (\Theta^{(L-1)})^T \Delta^{L} .* g(z^{L-1}) .* (1-g(z^{L-1}))
-\end{aligned}\end{equation}
-\begin{enumerate}
-	\item 此时，$z^{L-1}$表示的是矩阵
-	\item 与上述的$\delta^{L-1}$相比，此式批量计算的训练集中的所有数据
-	\item {\color{red}{从教程看，似乎不用这样算，都用迭代的方式，这大概也是$\delta^{l}$ 与 $\Delta^{l}$表示的意义不一样的来源}}
-\end{enumerate}
+% \begin{equation}\begin{aligned}
+% 	\Delta^{L-1} &= (\Theta^{(L-1)})^T \Delta^{L} .* g^{'}(z^{L-1}) \\
+% 	&= (\Theta^{(L-1)})^T \Delta^{L} .* g(z^{L-1}) .* (1-g(z^{L-1}))
+% \end{aligned}\end{equation}
+% \begin{enumerate}
+% 	\item 此时，$z^{L-1}$表示的是矩阵
+% 	\item 与上述的$\delta^{L-1}$相比，此式批量计算的训练集中的所有数据
+% 	\item {\color{red}{从教程看，似乎不用这样算，都用迭代的方式，这大概也是$\delta^{l}$ 与 $\Delta^{l}$表示的意义不一样的来源}}
+% \end{enumerate}
 
 
 \subsubsection{$\delta^{l}$}
@@ -92,7 +92,7 @@
 	\item 同样地，此时$z^{l}$表示的是一个向量（不是矩阵）
 \end{enumerate}
 
-\subsubsection{$\Delta^{l}$ 用迭代的方式计算}
+\subsubsection{$\Delta^{l}$（用迭代的方式计算）}
 \begin{enumerate}
 	\item 数值计算方式
 	\begin{equation}\begin{aligned}
