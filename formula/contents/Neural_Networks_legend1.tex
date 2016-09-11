@@ -1,4 +1,4 @@
-\section{神经网络图例}
+\section{神经网络}
 
 \subsection{神经网络示意图}
 \begin{tikzpicture}
@@ -7,7 +7,7 @@
 }
 
 % x
-\node[a] (x_0) at(0,10) {$x_0=+1$};
+% \node[a] (x_0) at(0,10) {$x_0=+1$};
 \node[a] (x_1) at(0,8) {$x_1$};
 \node[a] (x_2) at(0,6) {$x_2$};
 \node[a] (x_3) at(0,4) {$x_3$};
@@ -16,8 +16,11 @@
 \filldraw (0,1) circle (.06);
 \node[a] (x_n) at(0,0) {$x_n$};
 
+% X与a的分隔线
+\draw [dashed] (1,-1) -- (1,9);
+
 % a^{(1)}
-\node[a] (a_10) at(2,10)   {$a_0^{(1)}$};
+\node[a] (a_10) at(2,10)   {$+1$};
 \node[a] (a_11) at(2,8)   {$a_1^{(1)}$};
 \node[a] (a_12) at(2,6) {$a_2^{(1)}$};
 \node[a] (a_13) at(2,4)   {$a_3^{(1)}$};
@@ -66,6 +69,7 @@
 \filldraw (14,1.0) circle (.06);
 \node[a] (a_Lsl) at(14,0) {$a_{s_l}^{(L)}$};
 
+
 % 前向算法图例--仅连线：a1 -- a_21
 % \draw[->] (a_10) -- (a_21);
 \draw[->] (a_11) -- (a_21);
@@ -94,5 +98,9 @@
 % \path (a_33) edge[->] node[auto] {$\Theta_{34}^{(3)}$} (a_24);
 % \path (a_34) edge[->] node[auto] {$\Theta_{44}^{(3)}$} (a_24);
 \path (a_3s3) edge[->] node[auto] {$\Theta_{s14}^{(3)}$} (a_24);
+
+
+% 下方的标志
+
 
 \end{tikzpicture}
