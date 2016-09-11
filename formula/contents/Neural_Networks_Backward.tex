@@ -107,11 +107,19 @@
 \subsubsection{$D_{ij}^{(l)}$}
 \begin{enumerate}
 	\item $j=0$时
-
+	\begin{equation}
+		D_{ij}^{(l)} := \frac{1}{m}\Delta_{ij}^{(l)}
+	\end{equation}
 	\item $j \neq 0$时
-
+		\begin{equation}
+		D_{ij}^{(l)} := \frac{1}{m}(\Delta_{ij}^{(l)} + \Theta_{ij}^{(l)})
+	\end{equation}
 \end{enumerate}
 
+\subsubsection{$\frac{\partial{J(\Theta)}}{\partial{\Theta_{ij}^{(l)}}}$}
+\begin{equation}
+	\frac{\partial{J(\Theta)}}{\partial{\Theta_{ij}^{(l)}}} = D_{ij}^{(l)}
+\end{equation}
 
 \subsubsection{$\delta^{l}$ 与 $\Delta^{l}$的区别与联系}
 
