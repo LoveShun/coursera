@@ -65,29 +65,37 @@ Theta2_grad = zeros(size(Theta2));
 % Solution
 % Part 1:
 % 1. make y to 1's and 0's
-Y = zeros(m, num_labels)
+Y = zeros(m, num_labels);
 for i = 1:m
-    Y(i, y) = 1
+    Y(i, y) = 1;
 end
 
 % 2. cal h_{\theta}(x^{(i)})
-z2 = Theta1 * [ones(size(X,1), 1), X]
-a2 = sigmoid(z2)
-z3 = Theta2 * [ones(size(a2,1), 1), a2]
-H = sigmoid(z3)
+Z2 = [ones(size(X,1), 1), X]*Theta1';
+A2 = sigmoid(Z2);
+Z3 = [ones(size(A2,1), 1), A2]*Theta2';
+H = sigmoid(Z3);
 
 % 3. cal J(\theta) with .*
-J = 1/m * sum(sum((-Y.*log(H) - (1-Y).*log(1-H))'))
+J = 1/m * sum(sum((-Y.*log(H) - (1-Y).*log(1-H))'));
 
 
 % Part 2: cal with for loop over the training examples
 % 1. 
 for i = 1:m
-    y = Y(i, :)'
-    h = H(i, :)'
-    delta3 = h-y
-    delta2 = Theta2' * delta3 .* sigmoid(z2).*(1-sigmoid(z2))
+    y = Y(i, :)';
+    h = H(i, :)';
+    z2_ = [ones(size(A2,1), 1), A2];
+    z2 = z2_(i, :)';
+    delta3 = h-y;
+    delta2_ = Theta2' * delta3;
+    delta2 = delta2_ .* sigmoid(z2).*(1-sigmoid(z2));
+    size(delta3)
+    size(delta2)
 end
+
+
+
 
 
 
