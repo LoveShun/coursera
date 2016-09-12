@@ -78,30 +78,32 @@
 % \draw[->] (a_1s1) -- (a_21);
 
 % 前向算法图例--有标注：a1 -- a_21
-
+\path (a_10) edge[->] node[auto] {$\theta_{10}^{(1)}$} (a_21);
 % \path (a_11) edge[->] node[auto] {$\theta_{11}^{(1)}$} (a_21);
 % \path (a_12) edge[->] node[auto] {$\theta_{12}^{(1)}$} (a_21);
 % \path (a_13) edge[->] node[auto] {$\theta_{13}^{(1)}$} (a_21);
 \path (a_1s1) edge[->] node[auto] {$\theta_{1s1}^{(1)}$} (a_21);
 
 
-% 向后算法--仅连线: a3 -- a24
-% \draw[->] (a_31) -- (a_24);
-\draw[->] (a_32) -- (a_24);
-\draw[->] (a_33) -- (a_24);
-\draw[->] (a_34) -- (a_24);
-% \draw[->] (a_3s3) -- (a_24);
+% 前向算法--仅连线: a2 --> a34
+% \draw[->] (a_20) -- (a_34);
+\draw[->] (a_21) -- (a_34);
+\draw[->] (a_22) -- (a_34);
+\draw[->] (a_23) -- (a_34);
+\draw[->] (a_24) -- (a_34);
+% \draw[->] (a_2s2) -- (a_34);
 
-% 前后算法图例--有标注：a3 -- a24
-\path (a_31) edge[->] node[auto] {$\delta_{14}^{(3)}$} (a_24);
-% \path (a_32) edge[->] node[auto] {$\delta_{24}^{(3)}$} (a_24);
-% \path (a_33) edge[->] node[auto] {$\delta_{34}^{(3)}$} (a_24);
-% \path (a_34) edge[->] node[auto] {$\delta_{44}^{(3)}$} (a_24);
-\path (a_3s3) edge[->] node[auto] {$\delta_{s14}^{(3)}$} (a_24);
+% 前后算法图例--有标注：a2 -- a34
+\path (a_20) edge[->] node[auto] {$\theta_{40}^{(2)}$} (a_34);
+% \path (a_21) edge[->] node[auto] {$\theta_{41}^{(2)}$} (a_34);
+% \path (a_22) edge[->] node[auto] {$\theta_{42}^{(2)}$} (a_34);
+% \path (a_23) edge[->] node[auto] {$\theta_{43}^{(2)}$} (a_34);
+% \path (a_24) edge[->] node[auto] {$\theta_{44}^{(2)}$} (a_34);
+\path (a_2s2) edge[->] node[auto] {$\theta_{4s2}^{(2)}$} (a_34);
 
 
 % 下方的标志
 \node at (4, 11) {\color{red}{$\Theta^{(1)}$}};
-\node at (8, -1) {\color{red}{$\Delta^{(3)}$}};
+\node at (8, 11) {\color{red}{$\Theta^{(2)}$}};
 
 \end{tikzpicture}
