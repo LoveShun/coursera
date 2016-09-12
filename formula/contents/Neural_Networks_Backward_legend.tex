@@ -1,4 +1,4 @@
-\section{神经网络}
+\section{神经网络--后向算法}
 
 \subsection{神经网络示意图--后向算法}
 \begin{tikzpicture}
@@ -139,10 +139,44 @@
 
 
 % 标志
-\node at (4, -2) {\color{red}{$\delta^{(1)}=(\Theta^{(1)})^T [\delta^{2}(2:end)] .* g(z^{1}) .* (1-g(z^{1}))$}};
-\node at (8, -3) {\color{red}{$\delta^{(l)}=(\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g(z^{l}) .* (1-g(z^{l}))$}};
 \node at (4, 11) {$\Theta^{(1)}$};
 \node at (8, 11) {$\Theta^{(2)}$};
+\node at (2, -1) {\color{red}{无$\delta^{(1)}$}};
+\node at (6, -1) {\color{red}{$\delta^{(2)}$}};
+\node at (10, -1) {\color{red}{$\delta^{(3)}$}};
+
+
+% \node at (4, -2) {\color{red}{$\delta^{(1)}=(\Theta^{(1)})^T [\delta^{2}(2:end)] .* g(z^{1}) .* (1-g(z^{1}))$}};
+% \node at (8, -3) {\color{red}{$\delta^{(l)}=(\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g(z^{l}) .* (1-g(z^{l}))$}};
 
 
 \end{tikzpicture}
+
+
+
+\[\begin{cases}
+	\delta^{L} &= a^{L} - y ,\quad l=L \\
+	\delta^{L-1} &= (\Theta^{(L-1)})^T \delta^{L} .* g^{'}(z^{L-1}) \\
+		&= (\Theta^{(L-1)})^T \delta^{L} .* g(z^{L-1}) .* (1-g(z^{L-1})),\quad l=L-1 \\
+		\delta^{l} &= (\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g^{'}(z^{l}) \\
+	&= (\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g(z^{l}) .* (1-g(z^{l})) ,\quad 2<=l<=L-2 \\
+	% 无 a^{(1)}, \quad l=1
+\end{cases}\] \\
+无 $\delta^{(1)}$
+
+\begin{equation}\begin{aligned}
+		\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)} (a^{(l)})^T
+	\end{aligned}\end{equation}
+
+\[ D_{ij}^{(l)} = \begin{cases}
+	\frac{1}{m}\Delta_{ij}^{(l)} ,\quad j=0 \\
+	\frac{1}{m}(\Delta_{ij}^{(l)} + \Theta_{ij}^{(l)}), \quad j \neq 0
+\end{cases}\]
+
+\begin{equation*}
+	\frac{\partial{J(\Theta)}}{\partial{\Theta_{ij}^{(l)}}} = D_{ij}^{(l)}
+\end{equation*}
+
+
+
+

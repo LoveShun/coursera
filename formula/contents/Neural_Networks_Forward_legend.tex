@@ -1,6 +1,6 @@
-\section{神经网络}
+\section{神经网络--前向算法}
 
-\subsection{神经网络示意图}
+\subsection{神经网络示意图--前向算法}
 \begin{tikzpicture}
 \tikzset{
 	a/.style={circle, draw=black}
@@ -107,3 +107,42 @@
 \node at (8, 11) {\color{red}{$\Theta^{(2)}$}};
 
 \end{tikzpicture}
+
+
+\begin{equation}
+	a^{(j)} = g(z^{(j-1)}) \Rightarrow {(m,s_j)}
+\end{equation}
+
+\begin{equation}
+	\Theta^{(j)} = 
+		\left(\begin{matrix}
+			\theta_{10}^{(j)} & \theta_{11}^{(j)} & \theta_{12}^{(j)} & \dots & \theta_{1,s_{j}}^{(j)} \\
+			\theta_{20}^{(j)} & \theta_{21}^{(j)} & \theta_{22}^{(j)} & \dots & \theta_{2,s_{j}}^{(j)} \\
+			\theta_{30}^{(j)} & \theta_{31}^{(j)} & \theta_{32}^{(j)} & \dots & \theta_{3,s_{j}}^{(j)} \\
+			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			\theta_{s_{j+1}0}^{(j)} & \theta_{s_{j+1}1}^{(j)} & \theta_{s_{j+1}2}^{(j)} & \dots & \theta_{s_{j+1},s_{j}}^{(j)}
+		\end{matrix}\right) \Rightarrow {(s_{j+1},s_{j}+1)}
+\end{equation}
+
+\begin{equation}\begin{aligned}
+	z^{(j+1)} &= (1, a^{(j)}) (\Theta^{(j)})^T \\
+		\\ &= 
+			\left(\begin{matrix}
+				z_1^{(j+1)(1)} & z_2^{(j+1)(1)} & z_3^{(j+1)(1)} & \dots & z_{s_{j+1}}^{(j+1)(1)} \\
+				z_1^{(j+1)(2)} & z_2^{(j+1)(2)} & z_3^{(j+1)(2)} & \dots & z_{s_{j+1}}^{(j+1)(2)} \\
+				z_1^{(j+1)(3)} & z_2^{(j+1)(3)} & z_3^{(j+1)(3)} & \dots & z_{s_{j+1}}^{(j+1)(3)} \\
+				\vdots & \vdots & \vdots & \ddots & \vdots \\
+				z_1^{(j+1)(m)} & z_2^{(j+1)(m)} & z_3^{(j+1)(m)} & \dots & z_{s_{j+1}}^{(j+1)(m)} \\
+			\end{matrix}\right)
+\end{aligned}\end{equation}
+
+\begin{equation}
+	a^{(j+1)} = g(z^{(j+1)})  \Rightarrow {(m,s_{j+1})} 
+\end{equation}
+
+
+\begin{equation} \begin{aligned}
+	y & = \left(\begin{matrix}
+			y^{(1)} \\ y^{(2)} \\ y^{(3)} \\ \vdots \\ y^{(m)} \\
+		\end{matrix}\right)_{m*1}
+\end{aligned} \end{equation}
