@@ -2,20 +2,20 @@
 
 
 ori_text = r"""
-\begin{equation}
-	a^{s_L} = 
-		\left(\begin{matrix}
-			a_1^{(s_L)(1)} & a_2^{(s_L)(1)} & a_3^{(s_L)(1)} & \dots & a_{s_L}^{(s_L)(1)} \\
-			a_1^{(s_L)(2)} & a_2^{(s_L)(2)} & a_3^{(s_L)(2)} & \dots & a_{s_L}^{(s_L)(2)} \\
-			a_1^{(s_L)(3)} & a_2^{(s_L)(3)} & a_3^{(s_L)(3)} & \dots & a_{s_L}^{(s_L)(3)} \\
-			\vdots & \vdots & \vdots & \ddots & \vdots \\
-			a_1^{(s_L)(m)} & a_2^{(s_L)(m)} & a_3^{(s_L)(m)} & \dots & a_{s_L}^{(s_L)(m)} \\
-		\end{matrix}\right)
-\end{equation}
+\subsubsection{$\delta^{j}$}
+\begin{equation}\begin{aligned}
+	\delta^{j} &= (\Theta^{(j)})^T \delta^{j+1}(2:end) .* g^{'}(z^{j}) \\
+	&= (\Theta^{(j)})^T \delta^{j+1}(2:end) .* g(z^{j}) .* (1-g(z^{j}))
+\end{aligned}\end{equation}
+\begin{enumerate}
+	\item (2:end)表示舍弃第一个数据$\delta_0^{s_{L-1}}$（Matlab索引从1开始）
+	\item 对比于从$a^{j}$到$a^{j+1}$要添加一个$a_0^{j}=1$；从$\delta^{j+1}$到$\delta^{j}$要舍弃一个$\delta_0^{j+1}$
+	\item 同样地，此时$z^{j}$表示的是一个向量（不是矩阵）
+\end{enumerate}
 """
 
-old = 'a_'
-new = 'z_'
+old = 'j'
+new = 'l'
 
 
 def replace(ori_text, old, new):
