@@ -84,8 +84,8 @@
 
 \subsubsection{$\delta^{l}$（$2<=l<=L-2$）}
 \begin{equation}\begin{aligned}
-	\delta^{l} &= (\Theta^{(l)})^T \delta^{l+1}(2:end) .* g^{'}(z^{l}) \\
-	&= (\Theta^{(l)})^T \delta^{l+1}(2:end) .* g(z^{l}) .* (1-g(z^{l}))
+	\delta^{l} &= (\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g^{'}(z^{l}) \\
+	&= (\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g(z^{l}) .* (1-g(z^{l}))
 \end{aligned}\end{equation}
 \begin{enumerate}
 	\item 因$a^{(1)}$直接从X得到，不会有误差，故无$\delta^{(1)}$
