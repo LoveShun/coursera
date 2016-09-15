@@ -46,7 +46,7 @@
 	    \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m \left[h_\theta(x^{(i)}) - y^{(i)}\right] x_j^{(i)}
 \end{equation}
 
-\item 梯矩阵形式
+\item 矩阵形式
 \begin{equation}
 	\nabla J(\theta) = \frac{1}{m} X^T \left[h_\theta(x) - y\right]
 \end{equation}
@@ -61,33 +61,3 @@
 
 \subsection{当只有k个类别时，使用k个分类器}
 % 当只有k个类别时，使用k个分类器
-
-\subsection{避免过拟合}
-\begin{enumerate}
-\item 线性回归
-\begin{equation}
-	J(\theta) = \frac{1}{2m}\sum_{i=1}^m [h_\theta(x^{(i)})-y^{(i)}]^2 + \lambda \frac{1}{2m} \sum_{j=1}^n\theta_j^2
-\end{equation}
-
-\begin{equation}
-	\theta_j = \theta_j(1-\alpha\frac{\lambda}{m}) - \frac{\alpha}{m}\sum_{i=1}^n\left[h_\theta(x)-y\right]x_j^{(i)}
-\end{equation}
-
-\item 逻辑回归
-\begin{equation}
-	J(\theta) = \frac{1}{m}
-	    \sum_{i=1}^m \left[ -y^{(i)}log{h_\theta(x^{(i)})} - (1-y^{(i)})log{(1-h_\theta(x^{(i)}))} \right]
-		+ \lambda \frac{1}{2m} \sum_{j=1}^n\theta_j^2
-\end{equation}
-
-\begin{equation}
-	\theta_j = \theta_j - \alpha \left[\frac{1}{m}\sum_{i=1}^m [h_\theta(x^{(i)})-y^{(i)}]x_j^{(i)} + \frac{\lambda}{m}\theta_j\right]
-\end{equation}
-\end{enumerate}
-
-
-
-
-
-
-
