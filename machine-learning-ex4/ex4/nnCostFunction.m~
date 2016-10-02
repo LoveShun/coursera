@@ -72,18 +72,22 @@ a2 = sigmoid(z2);               % a2 --> 5000*25
 z3 = [ones(m,1), a2]*Theta2';   % 5000*26    26*10   --> z3 = 5000*10
 a3 = sigmoid(z3);               % a3 --> 5000*10
 
-h = a3                          % h  --> 5000*10
+H = a3;                         % h  --> 5000*10
 
-Y = zeros(m,num_labels)         % Y  --> 5000*10
+Y = zeros(m,num_labels);        % Y  --> 5000*10
 for i = 1:m
-    Y(i,y(i)) = 1
+    Y(i,y(i)) = 1;
 end
 
 for i = 1:m
-    J = J + (-y)
+    y = Y(i,:);
+    h = H(i,:);
+    J = J - y*log(h') - (1-y)*log(1-h');
 end
+J = J/m;
 
-
+% 
+J_reg = lambda/(2*m) * sum()
 
 
 

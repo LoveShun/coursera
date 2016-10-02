@@ -86,9 +86,10 @@ for i = 1:m
 end
 J = J/m;
 
+% Theta1 --> 25*401, Theta2 --> 10*26
+J_reg = lambda/(2*m) * (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)));
 
-
-
+J = J + J_reg;
 
 
 
