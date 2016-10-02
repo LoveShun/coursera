@@ -65,7 +65,7 @@ Theta2_grad = zeros(size(Theta2));
 
 % ---------- ---------- Solution ---------- ---------- 
 
-% m = 5000, n = 400
+% m = 5000, n = 400   X = 5000*400
 z2 = [ones(m,1), X]*Theta1';    % m*(n+1)    401*25  --> z2 = 5000*25
 a2 = sigmoid(z2);               % a2 --> 5000*25
 
@@ -91,9 +91,21 @@ J_reg = lambda/(2*m) * (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^
 
 J = J + J_reg;
 
-
-
-
+% BP
+for i = 1:m
+    y = Y(i,:)';    % 10*1
+    a3_ = a3(i,:)';     % 10*1
+    z2_ = z2(i,:)';      % 25*1
+    a2_ = a2(i,:)';      % 25*1
+    a1_ = X(i,:)';       % 400*1
+    delta3 = a3_ - y;    % 10*1
+    delta2 = Theta2'*delta3 .* sigmoidGradient([1; z2_]);   % 26*10  10*1 .* 26*1  
+    
+    Theta2_grad = Theta2_grad + delta3*[1; a2_]';    % 10*1  1*25   =  10*25
+    Theta1_grad = Theta1_grad + delta2(2:end)*[1;a1_]';  % 25*1  1*400  = 25*400
+end
+Theta1_grad = Theta1_grad/m;    % 25*401
+Theta2_grad = Theta2_grad/m;    % 10*26
 
 
 
