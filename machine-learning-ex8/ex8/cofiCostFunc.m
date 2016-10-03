@@ -49,16 +49,15 @@ Y_dif = Y_predict-Y;
 J = 1/2 * sum(sum(R .* Y_dif.^2));
 
 
-X_grad = Y_dif.*R*Theta;   
-Theta_grad = (Y_dif.*R)'*X;
+X_grad = Y_dif.*R*Theta;   % n_m * n_f
+Theta_grad = (Y_dif.*R)'*X;    % n_u * n_f
 
 
 J = J + lambda/2*sum(sum(Theta.^2)) + lambda/2*sum(sum(X.^2));
 
 
-
-
-
+X_grad = X_grad + lambda*X;
+Theta_grad = Theta_grad + lambda*Theta;
 
 
 % =============================================================

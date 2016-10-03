@@ -49,17 +49,40 @@ Y_dif = Y_predict-Y;
 J = 1/2 * sum(sum(R .* Y_dif.^2));
 
 
-for i = 1:num_movies            % i-->movie, j-->users
-    X_grad(i,:) = Y_dif(i,:)*Theta;      %1*n_u  n_u*n_f    1*n_f
-end
-
-for j = 1:num_users
-    Theta_grad = Y_dif()
-end
-
-X_grad = Y_dif*Theta;
+X_grad = Y_dif.*R*Theta;   % n_m * n_f
+Theta_grad = (Y_dif.*R)'*X;    % n_u * n_f
 
 
+J = J + lambda/2*sum(sum(Theta.^2)) + lambda/2*sum(sum(X.^2));
+
+X_grad = X_grad + lambda*X
+Theta_grad = Theta_grad + lambda
+
+
+
+% for i = 1:num_movies
+%     X_grad(i,:) = X_grad(i,:) + lambda*X(i,:);
+% end
+% 
+% for j = num_users
+%     Theta_grad(j,:) = Theta_grad(j,:) + lambda*Theta(j,:);
+% end
+
+% for i = 1:num_movies
+%     for j = num_users
+%         if R(i,j) == 1
+%             X_grad(i,:) = X_grad(i,:) + lambda*X(i,:);
+%         end
+%     end
+% end
+% 
+% for j = num_users
+%     for i = num_movies
+%         if R(i,j) == 1
+%             Theta_grad(j,:) = Theta_grad(j,:) + lambda*Theta(j,:);
+%         end
+%     end
+% end
 
 
 % =============================================================
