@@ -49,8 +49,16 @@ Y_dif = Y_predict-Y;
 J = 1/2 * sum(sum(R .* Y_dif.^2));
 
 
-X_grad = Y_dif.*R*Theta;   
-Theta_grad = (Y_dif.*R)'*X;
+for i = 1:num_movies            % i-->movie, j-->users
+    X_grad(i,:) = Y_dif(i,:)*Theta;      %1*n_u  n_u*n_f    1*n_f
+end
+
+for j = 1:num_users
+    Theta_grad = Y_dif()
+end
+
+X_grad = Y_dif*Theta;
+
 
 
 
