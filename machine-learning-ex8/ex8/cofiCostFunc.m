@@ -53,6 +53,13 @@ X_grad = Y_dif.*R*Theta;
 Theta_grad = (Y_dif.*R)'*X;
 
 
+J = J + lambda/2*sum(sum(Theta.^2)) + lambda/2*sum(sum(X.^2));
+
+
+
+
+
+
 
 % =============================================================
 
