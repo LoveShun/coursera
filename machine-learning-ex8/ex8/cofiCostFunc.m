@@ -41,7 +41,9 @@ Theta_grad = zeros(size(Theta));
 %
 
 
+y_predict = X*Theta';    %  n_m*n_f  n_f*n_u  --> n_m*n_u
 
+J = 1/2 * sum(sum(R .* (y_predict-Y).^2));
 
 
 
