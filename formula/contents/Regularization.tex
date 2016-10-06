@@ -56,7 +56,7 @@
 
 \subsubsection{矩阵计算方式}
 \begin{equation}
-		J(\theta) = \frac{1}{m} [-y^T \log{h_\theta(x)} - (1-y^T) \log{(1-h_\theta(x)}] + \lambda \frac{1}{2m}\theta^T \theta
+		J(\theta) = \frac{1}{m} \left[-y^T \log{h_\theta(x)} - (1-y^T) \log{(1-h_\theta(x)}\right] + \lambda \frac{1}{2m}\theta^T \theta
 \end{equation}
 
 % \[\begin{cases}
@@ -72,7 +72,7 @@
 
 
 \subsection{注意}
-在实际计算$\theta$中，都是先计算没有Regularization的结果，再对(2:end计算有Regularization的结果，再将其回到没有Regularization的结果中
+在实际计算$\theta$中，都是先计算没有Regularization的结果，再对(2:end)计算有Regularization的结果，再将其加到没有Regularization的结果中
 
 
 
