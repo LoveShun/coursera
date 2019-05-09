@@ -110,3 +110,7 @@ venv/
 ENV/
 .spyderproject
 .ropeproject
+
+
+*.pdf
+.idea/
